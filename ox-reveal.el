@@ -35,8 +35,12 @@
 (org-export-define-derived-backend 'reveal 'html
 
   :menu-entry
-  '(?R "Export to reveal.js HTML Presentation"
-       ((?R "To file" org-reveal-export-to-html)))
+  '(?r "Export to reveal.js HTML Presentation"
+       ((?h "As HTML reveal file" org-reveal-export-to-html)
+		(?o "As HTML reveal file and open" 
+			(lambda (a s v b)
+			  (if a (org-reveal-export-to-html t s v b)
+				(org-open-file (org-reveal-export-to-html nil s v b)))))))
 
   :options-alist
   '((:reveal-control nil "reveal_control" org-reveal-control t)
